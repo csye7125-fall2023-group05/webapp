@@ -11,7 +11,7 @@
     "env": "nodemon -r dotenv/config",
     "start:dev": "nodemon  --exec babel-node ./src/server.js",
     "clean": "rm -rf ./dist",
-    "build": "yarn clean && babel ./src/server.js --out-dir ./dist",
+    "build": "npm run clean && babel ./src/server.js --out-dir ./dist",
     "lint": "eslint --ignore-path .gitignore --ext .ts --fix",
     "test": "mocha --require @babel/register './tests/*.test.js' --recursive --exit",
     "test:dev": "mocha --require @babel/register './tests/*.test.js' --watch",
