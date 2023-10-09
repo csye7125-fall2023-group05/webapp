@@ -1,14 +1,52 @@
+import { Client } from 'pg'
 import logger from '../../configs/logger.config'
+import appConfig from '../../configs/app.config'
 
-const health = (req, res) => {
-  const { protocol, method, hostname, originalUrl } = req
+/**
+ * `health` controller for `healthz` endpoint
+ * @param {*} req API request parameter
+ * @param {*} res API response
+ * @param {*} next API errorHandler middleware
+ * @returns HTTP 200 OK, 404 Bad Request, 503 Service Unavailable
+ */
+const health = (req, res, next) => {
+  const { protocol, method, hostname, originalUrl, body } = req
   const headers = { ...req.headers }
   const metaData = { protocol, method, hostname, originalUrl, headers }
   logger.info(
     `Requesting ${method} ${protocol}://${hostname}${originalUrl}`,
     metaData
   )
-  res.sendStatus(200).json()
+
+  /**
+   * Payload validation
+   */
+  if (Object.keys(body).length !== 0) {
+    res.sendStatus(400).json()
+    return
+  }
+
+  /**
+   * Postgres database connection test with credentials validation
+   */
+  const { USER, PASSWORD, DB } = appConfig
+  const connectionString = `postgres://${USER}:${PASSWORD}@localhost:5432/${DB}`
+
+  const meta = { database: `${DB}`, user: `${USER}` }
+  const client = new Client({ connectionString })
+  client
+    .connect()
+    .then(() => {
+      logger.info(`Successfully connected to postgres service`, meta)
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
+      res.sendStatus(200).json()
+      client.end()
+    })
+    .catch((err) => {
+      logger.error(`Unable to connect to postgres service`, meta)
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
+      res.sendStatus(503).json()
+    })
 }
 
 export { health }

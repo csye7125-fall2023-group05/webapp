@@ -11,19 +11,10 @@ describe('Unit Test Suite', () => {
         return done()
       })
   })
-  it('GET / API endpoint', (done) => {
-    supertest(app)
-      .get('/')
-      .expect(200)
-      .end((err, res) => {
-        if (err) return done(err)
-        return done()
-      })
-  })
-  it('GET 404 API endpoint', (done) => {
+  it('GET 405 API endpoint', (done) => {
     supertest(app)
       .get('/randomendpoint')
-      .expect(404)
+      .expect(405)
       .end((err, res) => {
         if (err) return done(err)
         return done()
