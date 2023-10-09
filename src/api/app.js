@@ -6,8 +6,10 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.set('etag', 'strong')
 app.use('/', healthRoute)
+app.all('*', (req, res) => {
+  res.sendStatus(405).json()
+})
 app.use(errorHandler)
 
 export default app
