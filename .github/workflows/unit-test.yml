@@ -13,11 +13,30 @@ on:
 jobs:
   unit_tests:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
+    container: node:latest
+    # strategy:
+    #   matrix:
+    #     node-version: [18.x]
 
     environment: ${{ vars.ENVIRONMENT }}
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: ${{ vars.DATABASE }}
+          POSTGRES_USER: ${{ vars.DBUSER }}
+          POSTGRES_PASSWORD: ${{ vars.DBPASSWORD }}
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     name: Run unit tests
     steps:
       - uses: actions/checkout@v4
@@ -29,9 +48,16 @@ jobs:
           echo DATABASE=${{ vars.DATABASE }} >> .env
           echo DBUSER=${{ vars.DBUSER }} >> .env
           echo DBPASSWORD=${{ secrets.DBPASSWORD }} >> .env
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm i
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until nc -z localhost 5432; do
+            echo "Waiting for PostgreSQL to be up..."
+            sleep 5
+          done
+        continue-on-error: true
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      - run: npm ci
       - run: npm run test
