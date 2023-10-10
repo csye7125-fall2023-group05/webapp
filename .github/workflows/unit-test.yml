@@ -13,7 +13,7 @@ on:
 jobs:
   unit_tests:
     runs-on: ubuntu-latest
-    container: node:latest
+    # container: node:latest
     # strategy:
     #   matrix:
     #     node-version: [18.x]
@@ -48,16 +48,19 @@ jobs:
           echo DATABASE=${{ vars.DATABASE }} >> .env
           echo DBUSER=${{ vars.DBUSER }} >> .env
           echo DBPASSWORD=${{ secrets.DBPASSWORD }} >> .env
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          until nc -z localhost 5432; do
-            echo "Waiting for PostgreSQL to be up..."
-            sleep 5
-          done
-        continue-on-error: true
+        # run: |
+        #   until nc -z localhost 5432; do
+        #     echo "Waiting for PostgreSQL to be up..."
+        #     sleep 5
+        #   done
+        # continue-on-error: true
+      # - name: Wait for PostgreSQL to be ready
       # - name: Use Node.js ${{ matrix.node-version }}
       #   uses: actions/setup-node@v3
       #   with:
       #     node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run test
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
