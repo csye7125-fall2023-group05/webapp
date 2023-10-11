@@ -30,7 +30,7 @@ jobs:
         env:
           POSTGRES_DB: ${{ vars.DATABASE }}
           POSTGRES_USER: ${{ vars.DBUSER }}
-          POSTGRES_PASSWORD: ${{ vars.DBPASSWORD }}
+          POSTGRES_PASSWORD: ${{ secrets.DBPASSWORD }}
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -48,6 +48,8 @@ jobs:
           echo DATABASE=${{ vars.DATABASE }} >> .env
           echo DBUSER=${{ vars.DBUSER }} >> .env
           echo DBPASSWORD=${{ secrets.DBPASSWORD }} >> .env
+          echo DBHOST=${{ vars.DBHOST }} >> .env
+          echo DBPORT=${{ vars.DBPORT }} >> .env
         # run: |
         #   until nc -z localhost 5432; do
         #     echo "Waiting for PostgreSQL to be up..."
