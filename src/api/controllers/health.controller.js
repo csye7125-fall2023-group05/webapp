@@ -29,8 +29,8 @@ const health = (req, res, next) => {
   /**
    * Postgres database connection test with credentials validation
    */
-  const { USER, PASSWORD, DB } = appConfig
-  const connectionString = `postgres://${USER}:${PASSWORD}@localhost:5432/${DB}`
+  const { USER, PASSWORD, DB, DBHOST, DBPORT } = appConfig
+  const connectionString = `postgres://${USER}:${PASSWORD}@${DBHOST}:${DBPORT}/${DB}`
 
   const meta = { database: `${DB}`, user: `${USER}` }
   const client = new Client({ connectionString })
