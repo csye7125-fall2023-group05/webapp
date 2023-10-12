@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', healthRoute)
 app.all('*', (req, res) => {
-  res.sendStatus(405).json()
+  res.sendStatus(404).json()
 })
 app.use(errorHandler)
 

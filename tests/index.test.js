@@ -11,9 +11,29 @@ describe('Unit Test Suite', () => {
         return done()
       })
   })
-  it('GET 405 API endpoint', (done) => {
+  it('GET 404 API endpoint', (done) => {
     supertest(app)
       .get('/randomendpoint')
+      .expect(404)
+      .end((err, res) => {
+        if (err) return done(err)
+        return done()
+      })
+  })
+
+  it('POST 405 API endpoint', (done) => {
+    supertest(app)
+      .post('/healthz')
+      .expect(405)
+      .end((err, res) => {
+        if (err) return done(err)
+        return done()
+      })
+  })
+
+  it('PUT 405 API endpoint', (done) => {
+    supertest(app)
+      .put('/healthz')
       .expect(405)
       .end((err, res) => {
         if (err) return done(err)
