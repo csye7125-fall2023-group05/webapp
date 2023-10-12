@@ -1,0 +1,96 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  namespace: webapp
+  labels:
+    app: webapp
+    service: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+      service: api
+  template:
+    metadata:
+      name: webapp-pod
+      labels:
+        app: webapp
+        service: api
+    spec:
+      containers:
+        - name: webapp-container
+          image: sydrawat/webapp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          # container resource limits
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
+          # set environment variables for webapp
+          env:
+            - name: HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-configmap
+                  key: app_hostname
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-configmap
+                  key: app_port
+            - name: DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-configmap
+                  key: app_db
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secrets
+                  key: flyway_user
+            - name: DBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secrets
+                  key: flyway_password
+            - name: DBHOST
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-configmap
+                  key: app_dbhost
+            - name: DBPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-configmap
+                  key: app_dbport
+      # init container for database migration w/ flyway
+      initContainers:
+        - name: db-migration
+          image: rishabhagarwal14628/migrate:latest
+          imagePullPolicy: Always
+          # set environment variables for flyway db migration
+          env:
+            - name: FLYWAY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-configmap
+                  key: flyway_url
+            - name: FLYWAY_USER
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secrets
+                  key: flyway_user
+            - name: FLYWAY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secrets
+                  key: flyway_password
+          command: ["flyway", "migrate"]
