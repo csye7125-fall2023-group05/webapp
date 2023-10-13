@@ -1,2 +1,6 @@
-node_modules
-npm-debug.log
+# https://docs.docker.com/build/building/context/#dockerignore-files/
+.env
+node_modules/
+*.log
+logs/
+k8s/
