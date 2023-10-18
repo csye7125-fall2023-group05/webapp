@@ -28,6 +28,9 @@ const health = (req, res, next) => {
 
   /**
    * Postgres database connection test with credentials validation
+   * TODO: Use Sequelize instance to test connection
+   * sequelize.authenticate()
+   * https://sequelize.org/api/v6/class/src/sequelize.js~sequelize#instance-method-authenticate
    */
   const { USER, PASSWORD, DB, DBHOST, DBPORT } = appConfig
   const connectionString = `postgres://${USER}:${PASSWORD}@${DBHOST}:${DBPORT}/${DB}`
