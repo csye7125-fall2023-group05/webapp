@@ -5,6 +5,10 @@ const getAll = () => {
   return HttpCheckModel.findAll({})
 }
 
+const findById = async (id) => {
+  return await HttpCheckModel.findByPk(id)
+}
+
 const create = async (params) => {
   const {
     name,
@@ -35,4 +39,46 @@ const create = async (params) => {
   }
 }
 
-export default { getAll, create }
+const update = async (id, params) => {
+  const {
+    name,
+    uri,
+    is_paused,
+    num_retries,
+    uptime_sla,
+    response_time_sla,
+    use_ssl,
+    response_status_code,
+    check_interval_in_seconds,
+  } = params
+
+  try {
+    const httpCheck = await HttpCheckModel.findByPk(id)
+    if (!httpCheck)
+      throw new BadRequestError(`HttpCheck matching id: ${id} not found`)
+
+    return await httpCheck.update({
+      name,
+      uri,
+      is_paused,
+      num_retries,
+      uptime_sla,
+      response_time_sla,
+      use_ssl,
+      response_status_code,
+      check_interval_in_seconds,
+    })
+  } catch (error) {
+    throw new BadRequestError(error.message)
+  }
+}
+
+const remove = (id) => {
+  try {
+    return HttpCheckModel.destroy({ where: { id } })
+  } catch (error) {
+    throw new BadRequestError(error.message)
+  }
+}
+
+export default { getAll, create, update, findById, remove }
