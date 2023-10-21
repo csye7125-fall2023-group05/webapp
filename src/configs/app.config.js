@@ -1,7 +1,15 @@
 import 'dotenv/config'
 
-const { HOSTNAME, PORT, DBUSER, DBPASSWORD, DATABASE, DBPORT, DBHOST } =
-  process.env
+const {
+  HOSTNAME,
+  PORT,
+  DBUSER,
+  DBPASSWORD,
+  DATABASE,
+  DBPORT,
+  DBHOST,
+  DBSCHEMA,
+} = process.env
 
 const appConfig = {
   HOSTNAME,
@@ -11,6 +19,7 @@ const appConfig = {
   DB: DATABASE,
   DBPORT,
   DBHOST,
+  DBSCHEMA,
 }
 
 export default appConfig
