@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "uri",
+    "is_paused",
+    "num_entries",
+    "uptime_sla",
+    "response_time_sla",
+    "use_ssl",
+    "response_status_code_sla",
+    "check_interval_in_seconds"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string" },
+    "uri": { "type": "string" },
+    "is_paused": { "type": "boolean" },
+    "num_entries": { "type": "integer" },
+    "uptime_sla": { "type": "integer" },
+    "response_time_sla": { "type": "integer" },
+    "use_ssl": { "type": "boolean" },
+    "response_status_code_sla": { "type": "integer" },
+    "check_interval_in_seconds": { "type": "integer" }
+  }
+}
