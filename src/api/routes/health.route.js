@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', health)
 router.all('/', (req, res) => {
-  res.sendStatus(405).json()
+  res.sendStatus(405)
 })
 
 export { router as healthRoute }

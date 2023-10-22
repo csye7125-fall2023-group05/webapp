@@ -1,12 +1,16 @@
 import HttpCheckModel from '../models/httpcheck.model'
-import { BadRequestError } from '../utils/error.util'
+import { BadRequestError, ResourceNotFoundError } from '../utils/error.util'
 
 const getAll = () => {
   return HttpCheckModel.findAll({})
 }
 
 const findById = async (id) => {
-  return await HttpCheckModel.findByPk(id)
+  try {
+    return await HttpCheckModel.findByPk(id)
+  } catch (error) {
+    throw new ResourceNotFoundError(error.message)
+  }
 }
 
 const create = async (params) => {
@@ -55,7 +59,7 @@ const update = async (id, params) => {
   try {
     const httpCheck = await HttpCheckModel.findByPk(id)
     if (!httpCheck)
-      throw new BadRequestError(`HttpCheck matching id: ${id} not found`)
+      throw new ResourceNotFoundError(`HttpCheck matching id: ${id} not found`)
 
     return await httpCheck.update({
       name,

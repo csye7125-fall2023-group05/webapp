@@ -15,4 +15,8 @@ const startServer = () => {
   })
 }
 
-initializeDatabase().then(startServer)
+initializeDatabase()
+  .then(startServer)
+  .catch((err) => {
+    logger.error('Unable to initialize database', err)
+  })
