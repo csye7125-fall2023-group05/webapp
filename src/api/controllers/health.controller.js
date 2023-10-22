@@ -22,8 +22,7 @@ const health = (req, res, next) => {
    * Payload validation
    */
   if (Object.keys(body).length !== 0) {
-    res.sendStatus(400).json()
-    return
+    return res.sendStatus(400)
   }
 
   /**
@@ -48,7 +47,7 @@ const health = (req, res, next) => {
     .catch((err) => {
       logger.error(`Unable to connect to postgres service`, meta)
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
-      res.sendStatus(503).json()
+      return res.sendStatus(503)
     })
 }
 
