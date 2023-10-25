@@ -2,7 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Clone repository') {
-      agent any
       when {
         branch 'master'
       }
@@ -11,7 +10,6 @@ pipeline {
       }
     }
     stage('Build Image') {
-      agent any
       when {
         branch 'master'
       }
@@ -22,7 +20,6 @@ pipeline {
       }
     }
     stage('Push Image') {
-      agent any
       when {
         branch 'master'
       }
