@@ -3,6 +3,7 @@ pipeline {
   tools { nodejs "node" }
   environment {
     GH_TOKEN = credentials('jenkins-pat')
+    HUSKY = 0
   }
   stages {
     stage('Clone repository') {
