@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.0...v1.0.1) (2023-10-26)
+
+
+### Bug Fixes
+
+* add npm ci to jenkinsfile ([223d360](https://github.com/csye7125-fall2023-group05/webapp/commit/223d360396465beadf399654ab0911a735404da9))
+* remove husky npm plugin ([1823e42](https://github.com/csye7125-fall2023-group05/webapp/commit/1823e428dc83be41a06df393d6c7e1103e0f37ef))
+
 # 1.0.0 (2023-10-26)
 
 
