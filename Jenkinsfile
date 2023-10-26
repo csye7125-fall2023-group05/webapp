@@ -14,13 +14,25 @@ pipeline {
         checkout scm
       }
     }
+    stage('Release with semantic-release') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh '''
+        npx semantic-release
+        '''
+      }
+    }
     stage('Build Image') {
       when {
         branch 'master'
       }
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-          sh 'docker build --no-cache -t $DOCKERHUB_USERNAME/webapp:latest -f Dockerfile .'
+          sh '''
+          docker build --no-cache -t $DOCKERHUB_USERNAME/webapp:$(npm pkg get version | xargs) -t $DOCKERHUB_USERNAME/webapp:latest -f Dockerfile .
+          '''
         }
       }
     }
@@ -33,22 +45,6 @@ pipeline {
           sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
           sh 'docker image push --all-tags $DOCKERHUB_USERNAME/webapp'
         }
-      }
-    }
-    stage('Release with semantic-release') {
-      when {
-        branch 'master'
-      }
-      steps {
-        sh '''
-        npm install @semantic-release/commit-analyzer
-        npm install @semantic-release/release-notes-generator
-        npm install @semantic-release/changelog
-        npm install semantic-release-helm
-        npm install @semantic-release/git
-        npm install @semantic-release/github
-        npx semantic-release
-        '''
       }
     }
   }
