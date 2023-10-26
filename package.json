@@ -14,8 +14,7 @@
     "build": "npm run clean && babel ./src/server.js --out-dir ./dist",
     "lint": "eslint --ignore-path .gitignore --ext .ts --fix",
     "test": "mocha --require @babel/register './tests/*.test.js' --recursive --exit",
-    "test:dev": "mocha --require @babel/register './tests/*.test.js' --watch",
-    "prepare": "husky install"
+    "test:dev": "mocha --require @babel/register './tests/*.test.js' --watch"
   },
   "dependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -47,7 +46,6 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
