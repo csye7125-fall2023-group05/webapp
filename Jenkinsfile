@@ -30,10 +30,7 @@ pipeline {
         branch 'master'
       }
       steps {
-          sh '''
-          docker build --no-cache -t quay.io/pwncorp/webapp:$(npm pkg get version | xargs) -t quay.io/pwncorp/webapp:latest -f Dockerfile .
-          '''
-        }
+        sh 'docker build --no-cache -t quay.io/pwncorp/webapp:$(npm pkg get version | xargs) -t quay.io/pwncorp/webapp:latest -f Dockerfile .'
       }
     }
     stage('Push Image') {
