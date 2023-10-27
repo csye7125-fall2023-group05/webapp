@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.2...v1.0.3) (2023-10-27)
+
+
+### Bug Fixes
+
+* jenkinsfile docker login ([48d5950](https://github.com/csye7125-fall2023-group05/webapp/commit/48d59508bf1a706368a6c4da839aa75e6f8d1209))
+
 ## [1.0.2](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.1...v1.0.2) (2023-10-27)
 
 
