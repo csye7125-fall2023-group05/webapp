@@ -39,7 +39,7 @@ pipeline {
       }
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
-          sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+          sh 'docker login quay.io -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
           sh 'docker image push --all-tags quay.io/pwncorp/webapp'
         }
       }
