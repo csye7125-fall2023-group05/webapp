@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.1...v1.0.2) (2023-10-27)
+
+
+### Bug Fixes
+
+* update docker repo link ([a260b9c](https://github.com/csye7125-fall2023-group05/webapp/commit/a260b9ca8d1019845f553c4caf3175bd308cd072))
+
 ## [1.0.1](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.0...v1.0.1) (2023-10-26)
 
 
