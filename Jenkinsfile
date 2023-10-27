@@ -3,7 +3,6 @@ pipeline {
   tools { nodejs "node" }
   environment {
     GH_TOKEN = credentials('jenkins-pat')
-    HUSKY = 0
   }
   stages {
     stage('Clone repository') {
@@ -31,9 +30,8 @@ pipeline {
         branch 'master'
       }
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
           sh '''
-          docker build --no-cache -t $DOCKERHUB_USERNAME/webapp:$(npm pkg get version | xargs) -t $DOCKERHUB_USERNAME/webapp:latest -f Dockerfile .
+          docker build --no-cache -t quay.io/pwncorp/webapp:$(npm pkg get version | xargs) -t quay.io/pwncorp/webapp:latest -f Dockerfile .
           '''
         }
       }
@@ -45,7 +43,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
           sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-          sh 'docker image push --all-tags $DOCKERHUB_USERNAME/webapp'
+          sh 'docker image push --all-tags quay.io/pwncorp/webapp'
         }
       }
     }
