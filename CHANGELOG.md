@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.3...v1.1.0) (2023-11-15)
+
+
+### Features
+
+* create k8s custom resource utils ([a370412](https://github.com/csye7125-fall2023-group05/webapp/commit/a37041223d36e23c2324a6a7310ffc9d99249593))
+* create/delete CR on POST, DELETE ([436a6eb](https://github.com/csye7125-fall2023-group05/webapp/commit/436a6eb6d1e16acf8950c180cc117c3eae8430b1))
+* update custom resource on PUT request ([097515c](https://github.com/csye7125-fall2023-group05/webapp/commit/097515c3f1092cca7e3e23439f3c69e4fbd924a4))
+
 ## [1.0.3](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.2...v1.0.3) (2023-10-27)
 
 
