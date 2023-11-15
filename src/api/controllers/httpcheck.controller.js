@@ -5,7 +5,11 @@ import {
   ServiceUnavailableError,
 } from '../utils/error.util'
 import { httpStatusCodes } from '../../constants/responseCodes'
-import { createCustomResource, deleteCustomResource } from '../utils/k8s.util'
+import {
+  createCustomResource,
+  deleteCustomResource,
+  patchCustomResource,
+} from '../utils/k8s.util'
 
 /**
  * `get` controller for GET `/v1/http-check/:id` endpoint
@@ -50,7 +54,7 @@ export const create = async (req, res, next) => {
     if (!httpCheck) throw new ServiceUnavailableError()
 
     createCustomResource({
-      name: `${httpCheck.name}-${httpCheck.id}`,
+      name: httpCheck.id,
       url: httpCheck.uri,
       retries: httpCheck.num_retries,
       res_code: httpCheck.response_status_code,
@@ -81,7 +85,12 @@ export const update = async (req, res, next) => {
     const updatedHttpCheck = await service.update(req.params.id, req.body)
     if (!updatedHttpCheck) throw new ServiceUnavailableError()
 
-    console.log('updatedHttpcheck', JSON.stringify(updatedHttpCheck))
+    patchCustomResource(updatedHttpCheck.id, {
+      name: updatedHttpCheck.id,
+      url: updatedHttpCheck.uri,
+      retries: updatedHttpCheck.num_retries,
+      res_code: updatedHttpCheck.response_status_code,
+    })
 
     return res.sendStatus(204)
   } catch (error) {
@@ -106,7 +115,7 @@ export const remove = async (req, res, next) => {
     if (!deletedCount)
       throw new ResourceNotFoundError("HttpCheck doesn't exist")
 
-    deleteCustomResource(`${httpCheck.name}-${httpCheck.id}`)
+    deleteCustomResource(httpCheck.id)
 
     return res.sendStatus(204)
   } catch (error) {

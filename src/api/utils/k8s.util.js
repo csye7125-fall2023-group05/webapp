@@ -53,7 +53,20 @@ export const createCustomResource = (params) => {
 }
 
 export const patchCustomResource = (cr_name, params) => {
-  const body = createCustomResourceBody(params)
+  const options = {
+    headers: { 'Content-type': k8s.PatchUtils.PATCH_FORMAT_JSON_PATCH },
+  }
+  const patch = [
+    {
+      op: 'replace',
+      path: '/spec',
+      value: {
+        url: params.url,
+        retries: params.retries,
+        res_code: params.res_code,
+      },
+    },
+  ]
 
   k8sCustomApi
     .patchNamespacedCustomObject(
@@ -62,7 +75,11 @@ export const patchCustomResource = (cr_name, params) => {
       NAMESPACE,
       KIND_PLURAL,
       cr_name,
-      body
+      patch,
+      undefined,
+      undefined,
+      undefined,
+      options
     )
     .then((res) => {
       console.log('patchNamespacedCustomObject res:', JSON.stringify(res))
