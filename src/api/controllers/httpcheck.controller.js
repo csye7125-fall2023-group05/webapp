@@ -98,7 +98,7 @@ export const update = async (req, res, next) => {
   }
 }
 
-/**contains
+/**
  * `remove` controller for DELETE `/v1/http-check/:id` endpoint
  * @param {*} req API request parameter
  * @param {*} res API response

@@ -1,26 +1,15 @@
 import * as k8s from '@kubernetes/client-node'
+import appConfig from '../../configs/app.config'
 
 const kc = new k8s.KubeConfig()
 kc.loadFromDefault()
 
 const k8sCustomApi = kc.makeApiClient(k8s.CustomObjectsApi)
 
-const GROUP = 'webappcron.csye7125-fall2023-group05.cloud'
-const VERSION = 'v1'
-const KIND = 'Cron'
-const KIND_PLURAL = 'crons'
-const NAMESPACE = 'default'
-
-const createCustomResourceBody = ({
-  labels,
-  name,
-  url,
-  retries,
-  res_code = 200,
-}) => {
+const createCustomResourceBody = ({ name, url, retries, res_code = 200 }) => {
   return {
-    apiVersion: `${GROUP}/${VERSION}`,
-    kind: KIND,
+    apiVersion: `${appConfig.K8S_GROUP}/${appConfig.K8S_API_VERSION}`,
+    kind: appConfig.K8S_CR_KIND,
     metadata: {
       // labels: [
       //   'app.kubernetes.io/name: cron:',
@@ -35,6 +24,13 @@ const createCustomResourceBody = ({
       url,
       retries,
       res_code,
+      broker_0: appConfig.K8S_BROKER_0,
+      broker_1: appConfig.K8S_BROKER_1,
+      broker_2: appConfig.K8S_BROKER_2,
+      client_id: appConfig.K8S_CLIENT_ID,
+      dockerConfigJSON: appConfig.K8S_DOCKER_CONFIG_JSON,
+      topic: appConfig.K8S_TOPIC,
+      schedule: '* * * * *',
     },
   }
 }
@@ -43,7 +39,13 @@ export const createCustomResource = (params) => {
   const body = createCustomResourceBody(params)
 
   k8sCustomApi
-    .createNamespacedCustomObject(GROUP, VERSION, NAMESPACE, KIND_PLURAL, body)
+    .createNamespacedCustomObject(
+      appConfig.K8S_GROUP,
+      appConfig.K8S_API_VERSION,
+      appConfig.K8S_NAMESPACE,
+      appConfig.K8S_CR_KIND_PLURAL,
+      body
+    )
     .then((res) => {
       console.log('createNamespacedCustomObject res:', JSON.stringify(res))
     })
@@ -56,24 +58,21 @@ export const patchCustomResource = (cr_name, params) => {
   const options = {
     headers: { 'Content-type': k8s.PatchUtils.PATCH_FORMAT_JSON_PATCH },
   }
+  const body = createCustomResourceBody({ ...params })
   const patch = [
     {
       op: 'replace',
       path: '/spec',
-      value: {
-        url: params.url,
-        retries: params.retries,
-        res_code: params.res_code,
-      },
+      value: { ...body.spec },
     },
   ]
 
   k8sCustomApi
     .patchNamespacedCustomObject(
-      GROUP,
-      VERSION,
-      NAMESPACE,
-      KIND_PLURAL,
+      appConfig.K8S_GROUP,
+      appConfig.K8S_API_VERSION,
+      appConfig.K8S_NAMESPACE,
+      appConfig.K8S_CR_KIND_PLURAL,
       cr_name,
       patch,
       undefined,
@@ -91,7 +90,13 @@ export const patchCustomResource = (cr_name, params) => {
 
 export const deleteCustomResource = (name) => {
   k8sCustomApi
-    .deleteNamespacedCustomObject(GROUP, VERSION, NAMESPACE, KIND_PLURAL, name)
+    .deleteNamespacedCustomObject(
+      appConfig.K8S_GROUP,
+      appConfig.K8S_API_VERSION,
+      appConfig.K8S_NAMESPACE,
+      appConfig.K8S_CR_KIND_PLURAL,
+      name
+    )
     .then((res) => {
       console.log('deleteNamespacedCustomObject res:', JSON.stringify(res))
     })
