@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.0...v1.1.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* add k8s env variables + update CR ([1422699](https://github.com/csye7125-fall2023-group05/webapp/commit/14226994ff3fb378e0dab9a49f4b6e0ed3cc3ad7))
+* disable eslintrc camelcase restriction ([4dc96dd](https://github.com/csye7125-fall2023-group05/webapp/commit/4dc96dd92c7a012aecd782c4c40b8c1c138ee284))
+
 # [1.1.0](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.0.3...v1.1.0) (2023-11-15)
 
 
