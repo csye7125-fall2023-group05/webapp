@@ -35,5 +35,6 @@ module.exports = {
     'max-classes-per-file': 'off',
     'default-param-last': 'off',
     'no-undef': 'off',
+    camelcase: 'off',
   },
 }
