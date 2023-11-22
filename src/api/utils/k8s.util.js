@@ -27,6 +27,7 @@ const createCustomResourceBody = ({
       name: id,
     },
     spec: {
+      id,
       name,
       url,
       retries,
