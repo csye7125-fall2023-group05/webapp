@@ -54,7 +54,8 @@ export const create = async (req, res, next) => {
     if (!httpCheck) throw new ServiceUnavailableError()
 
     createCustomResource({
-      name: httpCheck.id,
+      id: httpCheck.id,
+      name: httpCheck.name,
       url: httpCheck.uri,
       retries: httpCheck.num_retries,
       res_code: httpCheck.response_status_code,
@@ -86,7 +87,8 @@ export const update = async (req, res, next) => {
     if (!updatedHttpCheck) throw new ServiceUnavailableError()
 
     patchCustomResource(updatedHttpCheck.id, {
-      name: updatedHttpCheck.id,
+      id: updatedHttpCheck.id,
+      name: updatedHttpCheck.name,
       url: updatedHttpCheck.uri,
       retries: updatedHttpCheck.num_retries,
       res_code: updatedHttpCheck.response_status_code,

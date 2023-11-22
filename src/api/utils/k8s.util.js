@@ -6,7 +6,13 @@ kc.loadFromDefault()
 
 const k8sCustomApi = kc.makeApiClient(k8s.CustomObjectsApi)
 
-const createCustomResourceBody = ({ name, url, retries, res_code = 200 }) => {
+const createCustomResourceBody = ({
+  id,
+  name,
+  url,
+  retries,
+  res_code = 200,
+}) => {
   return {
     apiVersion: `${appConfig.K8S_GROUP}/${appConfig.K8S_API_VERSION}`,
     kind: appConfig.K8S_CR_KIND,
@@ -18,9 +24,10 @@ const createCustomResourceBody = ({ name, url, retries, res_code = 200 }) => {
       //   'app.kubernetes.io/managed-by: kustomize',
       //   'app.kubernetes.io/created-by: test-operator',
       // ],
-      name,
+      name: id,
     },
     spec: {
+      name,
       url,
       retries,
       res_code,
