@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.1...v1.1.2) (2023-11-22)
+
+
+### Bug Fixes
+
+* add id to spec ([a348458](https://github.com/csye7125-fall2023-group05/webapp/commit/a348458884c11d7118e9bf80d67c20caba2c3b2d))
+* add name to custom resource ([10d3b80](https://github.com/csye7125-fall2023-group05/webapp/commit/10d3b80a7b1faa299082e7236ab3cd784ae7d0bf))
+
 ## [1.1.1](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.0...v1.1.1) (2023-11-17)
 
 
