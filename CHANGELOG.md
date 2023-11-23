@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.2...v1.1.3) (2023-11-23)
+
+
+### Bug Fixes
+
+* update CR spec ([1a5a83e](https://github.com/csye7125-fall2023-group05/webapp/commit/1a5a83e2f56ab324fb6505a0cab5daf750bf0455))
+
 ## [1.1.2](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.1...v1.1.2) (2023-11-22)
 
 
