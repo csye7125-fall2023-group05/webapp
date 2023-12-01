@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.3...v1.2.0) (2023-12-01)
+
+
+### Features
+
+* add helm upgrade CD pipeline for rest api ([3dae460](https://github.com/csye7125-fall2023-group05/webapp/commit/3dae460c4abe526a8a40bab08384492692c2f381)), closes [#40](https://github.com/csye7125-fall2023-group05/webapp/issues/40)
+
 ## [1.1.3](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.2...v1.1.3) (2023-11-23)
 
 
