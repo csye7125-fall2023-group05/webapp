@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.0...v1.2.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* add stricthostchecking flag ([dc30e72](https://github.com/csye7125-fall2023-group05/webapp/commit/dc30e72d224033f8631fcfb900afb72648c850e8))
+
 # [1.2.0](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.1.3...v1.2.0) (2023-12-01)
 
 
