@@ -62,7 +62,7 @@ pipeline {
           sh '''
           cat $PRIVATE_KEY > gke_compute
           cat $K8S_SA_JSON > sa.json
-          scp -i gke_compute sa.json $USERNAME@$BASTION_IP:/home/$USERNAME
+          scp -i gke_compute -o StrictHostKeyChecking=no sa.json $USERNAME@$BASTION_IP:/home/$USERNAME
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP ./download-tarball.sh webapp-helm-chart
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP gcloud auth activate-service-account --key-file=sa.json
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP gcloud config configurations list
