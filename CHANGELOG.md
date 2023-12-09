@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.5...v1.2.6) (2023-12-09)
+
+
+### Bug Fixes
+
+* jenkins pipeline fix ([7e4b075](https://github.com/csye7125-fall2023-group05/webapp/commit/7e4b07573848e59dd7b0ab4ce4b58433061c92d3))
+
 ## [1.2.5](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.4...v1.2.5) (2023-12-09)
 
 
