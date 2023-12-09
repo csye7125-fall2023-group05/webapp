@@ -71,7 +71,7 @@ pipeline {
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP kubectl get ns
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP helm ls -n webapp -a
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP cp -r csye7125-fall2023* webapp-helm-chart
-          ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP helm upgrade -n webapp webapp-helm-release webapp-helm-chart --set=imagePullSecrets.dockerConfig=$ROBOCOP || echo "version already exists on the cluster"
+          ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP helm upgrade -n webapp webapp-helm-release webapp-helm-chart --set=imagePullSecrets.dockerConfig=$ROBOCOP --set=config.k8s_docker_config_json=$ROBOCOP || echo "version already exists on the cluster"
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP helm ls -n webapp -a
           ssh -i gke-compute -o StrictHostKeyChecking=no $USERNAME@$BASTION_IP rm -rf webapp-helm-chart*
           '''
