@@ -344,7 +344,7 @@ A `ConfigMap` and a `Secret` resource is required to configure the environment v
   # you will still need to manually delete the minikube docker image!
   ```
 
-## :ninja: Author
+## :ninja: Authors
 
 [Siddharth Rawat](mailto:rawat.sid@northeastern.edu)
 [Karan Wadhwa](mailto:wadhwa.k@northeastern.edu)
