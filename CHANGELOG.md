@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.7...v1.2.8) (2023-12-09)
+
+
+### Bug Fixes
+
+* handle helm upgrade gracefully ([f0e66bc](https://github.com/csye7125-fall2023-group05/webapp/commit/f0e66bcb93c8e8c8b31ec53a6a04607af0631ff6))
+
 ## [1.2.7](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.6...v1.2.7) (2023-12-09)
 
 
