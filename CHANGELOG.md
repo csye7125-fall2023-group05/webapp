@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.8...v1.2.9) (2023-12-09)
+
+
+### Bug Fixes
+
+* update readme for pipeline testing ([6b8a9d7](https://github.com/csye7125-fall2023-group05/webapp/commit/6b8a9d77d00cdf49d5da5d635c79141b07d7d38a))
+
 ## [1.2.8](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.7...v1.2.8) (2023-12-09)
 
 
