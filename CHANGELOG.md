@@ -1,3 +1,10 @@
+## [1.2.11](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.10...v1.2.11) (2023-12-09)
+
+
+### Bug Fixes
+
+* add pull secrets for operator ([cc92de0](https://github.com/csye7125-fall2023-group05/webapp/commit/cc92de0439b8ba9d123e9086e99c00ee3b78c7af))
+
 ## [1.2.10](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.9...v1.2.10) (2023-12-09)
 
 
