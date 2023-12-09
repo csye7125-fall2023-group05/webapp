@@ -1,7 +1,5 @@
 # :spider_web: webapp
 
-[![Unit Tests](https://github.com/csye7125-fall2023-group05/webapp/actions/workflows/unit-test.yml/badge.svg?branch=master)](https://github.com/csye7125-fall2023-group05/webapp/actions/workflows/unit-test.yml)
-
 RESTful Backend API service for a fullstack web application.
 
 ## :package: Prerequisites
