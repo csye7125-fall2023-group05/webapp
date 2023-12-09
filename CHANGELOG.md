@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.2...v1.2.3) (2023-12-09)
+
+
+### Bug Fixes
+
+* remove action badge ([5130041](https://github.com/csye7125-fall2023-group05/webapp/commit/5130041524e9b1aca51c4c0d4b581290c3cf9ad1))
+
 ## [1.2.2](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.1...v1.2.2) (2023-12-09)
 
 
