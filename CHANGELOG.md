@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.1...v1.2.2) (2023-12-09)
+
+
+### Bug Fixes
+
+* add status badge ([179993e](https://github.com/csye7125-fall2023-group05/webapp/commit/179993ec5d905fab3a00e3752aaf6e3d8df43bc3))
+
 ## [1.2.1](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.0...v1.2.1) (2023-12-01)
 
 
