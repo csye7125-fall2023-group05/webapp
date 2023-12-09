@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.4...v1.2.5) (2023-12-09)
+
+
+### Bug Fixes
+
+* updating readme ([21e730c](https://github.com/csye7125-fall2023-group05/webapp/commit/21e730cb7459398c46d7931c73f2fbf2449b146c))
+
 ## [1.2.4](https://github.com/csye7125-fall2023-group05/webapp/compare/v1.2.3...v1.2.4) (2023-12-09)
 
 
